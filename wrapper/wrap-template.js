@@ -606,12 +606,12 @@
     root.sodium.onload :
     null;
   if (typeof define === "function" && define.amd) {
-    define(["exports", "/*{{libsodium}}*/"], expose_wrappers);
+    define(["exports", "@consento//*{{libsodium}}*/"], expose_wrappers);
   } else if (
     typeof exports === "object" &&
     typeof exports.nodeName !== "string"
   ) {
-    expose_wrappers(exports, require("/*{{libsodium}}*/"));
+    expose_wrappers(exports, require("@consento//*{{libsodium}}*/"));
   } else {
     root.sodium = expose_wrappers((root.commonJsStrict = {}), root.libsodium);
   }

@@ -58,17 +58,21 @@ $(MODULES_DIR)/libsodium.js: wrapper/libsodium-pre.js wrapper/libsodium-post.js 
 	@echo +++ Building standard/libsodium
 	mkdir -p $(MODULES_DIR)
 	cat wrapper/libsodium-pre.js $(LIBSODIUM_JS_DIR)/lib/libsodium.js wrapper/libsodium-post.js > $(MODULES_DIR)/libsodium.js
+	$(NODE) wrapper/fix-require $(MODULES_DIR)/libsodium.js
 
 	mkdir -p $(BROWSERS_DIR)
 	cat $(MODULES_DIR)/libsodium.js $(MODULES_DIR)/libsodium-wrappers.js > $(BROWSERS_DIR)/sodium.js
+	$(NODE) wrapper/fix-require $(BROWSERS_DIR)/sodium.js
 
 $(MODULES_SUMO_DIR)/libsodium-sumo.js: wrapper/libsodium-pre.js wrapper/libsodium-post.js $(MODULES_SUMO_DIR)/libsodium-wrappers.js $(LIBSODIUM_JS_SUMO_DIR)/lib/libsodium.js
 	@echo +++ Building sumo/libsodium
 	mkdir -p $(MODULES_SUMO_DIR)
 	cat wrapper/libsodium-pre.js $(LIBSODIUM_JS_SUMO_DIR)/lib/libsodium.js wrapper/libsodium-post.js > $(MODULES_SUMO_DIR)/libsodium-sumo.js
+	$(NODE) wrapper/fix-require $(MODULES_SUMO_DIR)/libsodium-sumo.js
 
 	mkdir -p $(BROWSERS_SUMO_DIR)
 	cat $(MODULES_SUMO_DIR)/libsodium-sumo.js $(MODULES_SUMO_DIR)/libsodium-wrappers.js > $(BROWSERS_SUMO_DIR)/sodium.js
+	$(NODE) wrapper/fix-require $(BROWSERS_SUMO_DIR)/sodium.js
 
 $(LIBSODIUM_DIR)/test/default/browser/sodium_core.html: $(LIBSODIUM_DIR)/configure
 	cd $(LIBSODIUM_DIR) && ./dist-build/emscripten.sh --browser-tests

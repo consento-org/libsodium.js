@@ -7,6 +7,9 @@
     "dist/modules-sumo/libsodium-sumo.js",
     "package.json"
   ],
+  "dependencies": {
+    "@consento/sync-randombytes": "~1.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/jedisct1/libsodium.js.git"
