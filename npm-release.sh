@@ -8,7 +8,7 @@ for f in \
 ; do
   rm -f package.json
   cp "$f" package.json
-  npm publish || yarn publish
+  npm publish --access=public
 done
 rm -f package.json
 cp package-libsodium-wrappers.json package.json
